@@ -1,17 +1,36 @@
 class funString():
 
-    def _size_(self,str) :
-        self.str = str
-        print(len(str))
+    def __init__(self, string=""):
+
+        self.string = string
+
+    def __str__(self):
+
+        return self.string
+
+    def size(self):
+
+        return len(self.string)
 
     def changeSize(self):
-        print(str.capitalize())
+
+        temp = ""
+        for ch in self.string:
+            if ch.isupper():
+                temp += chr(ord(ch)-65+97)
+            elif ch.islower():
+                temp += chr(ord(ch)+65-97)
+        self.string = temp
+        return self.string
 
     def reverse(self):
-        print("")
+
+        self.string = self.string[::-1]
+        return self.string
 
     def deleteSame(self):
-        print("")
+        self.string = "".join(sorted(set(self.string)))
+        return self.string
 
 
 str1,str2 = input("Enter String and Number of Function : ").split()
