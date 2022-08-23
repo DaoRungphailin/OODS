@@ -1,3 +1,6 @@
+from ast import operator
+
+
 class Stack():
     def __init__(self):
         self.items = []
@@ -16,10 +19,13 @@ class Stack():
             self.size -= 1
             return self.items.pop()
 
+    def peek(self):
+        return self.items[-1]
+
     def __str__(self):
         return str(self.items)
 
-Operators = set(['+', '-', '*', '/', '(', ')', '^']) 
+Operators = {'+', '-', '*', '/', '(', ')', '^'} 
 Priority = {'+':1, '-':1, '*':2, '/':2, '^':3}
 
 def InfixToPosfix(str):
@@ -31,16 +37,11 @@ def InfixToPosfix(str):
         if s.size >= 0:
             if c.isalpha():
                 output += c
-            # elif c == '(':
-            #     s.push(c)
-            # elif c == ')':
-            #     while s and s[-1] != '(' :
-            #         output += s.pop()
-            #     s.pop()
-            # else:
-            #     while s and s[-1]!='(' and Priority[c]<=Priority[s[-1]]:
-            #         output += s.pop()
-            #     s.append(c)
+            else:
+                s.push(c)
+                #print(s.peek())
+                if Priority[s.peek()] > Priority[c]: #check pruority if small push if big pop
+                    output += s.pop()
         i+=1
     print("output = " ,output)
     print("Operator = " ,s)
