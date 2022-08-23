@@ -1,2 +1,2 @@
-           error = 2
-        i
+s = Stack()
+output = ''

@@ -19,7 +19,6 @@ class Stack():
 def match(open,close):
     opens = "{[("
     closes = "}])"
-    print("check match")
     return opens.index(open) == closes.index(close) 
 
     # return (open == '(' and close == ')') or \
@@ -38,24 +37,24 @@ def parenMatching(str):
             if c in '}])':
                 if s.size > 0:
                     if not match(s.pop(),c):
-                        error = 1 #NOT MATCH
+                        error = 1 #NOT MATCH มันโดนทับ
                 else:
                     error = 2 #close paren excess
         i += 1
-    if s.size > 0:
+    if s.size > 0 and error == 0:
         error = 3 #open paren(s) excess
     return error,c,i,s
 
-stack = Stack()
+stack = Stak()
 stack = str(input("Enter expresion : "))
 
-err,c,i,s = parenMatching(stack)
+err,c,i,s = parenMatching(stack)   
 if err == 1:
-    print(stack, 'unmatchopen-close  ')
+    print(stack, 'Unmatch open-close')
 elif err == 2:
     print(stack, 'close paren excess')
 elif err == 3:
-    print(stack, 'open paren(s) excess  ', s.size,': ',end='') 
+    print(stack, 'open paren excess  ', s.size,': ',end='') 
     for ele in s.items:
         print(ele,sep=' ',end = '')
     print()
