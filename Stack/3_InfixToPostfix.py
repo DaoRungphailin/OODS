@@ -41,6 +41,7 @@ def InfixToPosfix(str):
                 s.push(c)
                 #print(s.peek())
                 if Priority[s.peek()] > Priority[c]: #check pruority if small push if big pop
+                    print("check")
                     output += s.pop()
         i+=1
     print("output = " ,output)
