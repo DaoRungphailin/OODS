@@ -1,3 +1,4 @@
+from ast import operator
 class Stack():
     def __init__(self):
         self.items = []
@@ -6,7 +7,6 @@ class Stack():
     def push(self,str):
         self.items.append(str)
         self.size += 1
-        self.items.sort()
         return str
     
     def pop(self):
@@ -16,8 +16,8 @@ class Stack():
             self.size -= 1
             return self.items.pop()
 
-    def peek(self):
-        return self.items[-1]
+    def peek(self,n):
+        return self.items[-n]
 
     def __str__(self):
         return str(self.items)
@@ -32,18 +32,34 @@ def InfixToPosfix(str):
     while i< len(str):
         c = str[i]
         if s.size >= 0:
+            
             if c.isalpha():
                 output += c
-            else:
+            elif(s.size == 0):
                 s.push(c)
-                #print(s.peek())
-                if Priority[s.peek()] > Priority[c]: #check pruority if small push if big pop
+            elif(c == ')'):
+                while(c != '('):
+                    output += s.pop()
+                    i+=1
+                    c = str[i]
+
+            else:
+                print(s)
+                if(s.size > 1):
+                    print(f's.peak1 = {s.peek(1)}, s.peak2 = {s.peek(2)}')
+                    print(f's.peak1 = {Priority[s.peek(1)]}, s.peak2 = {Priority[s.peek(1)]}')
+                if(s.size > 1 and Priority[s.peek(1)] > Priority[s.peek(2)]):#check pruority if small push if big pop
                     print("check")
                     output += s.pop()
-        i+=1
-    print("output = " ,output)
-    print("Operator = " ,s)
+                    output += s.pop()
+                elif(s.size > 1 and Priority[s.peek(1)] < Priority[s.peek(2)]):
+                    s.push(c)
 
+        i+=1
+    while(s.size != 0):
+        output += s.pop()
+    print("output = " ,output,type(output))
+    print("Operator = " ,s,type(operator))
 
 infix = input("Enter Infix : ")
 InfixToPosfix(infix)
