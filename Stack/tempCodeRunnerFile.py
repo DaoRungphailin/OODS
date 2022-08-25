@@ -1,2 +1,0 @@
-s = Stack()
-output = ''

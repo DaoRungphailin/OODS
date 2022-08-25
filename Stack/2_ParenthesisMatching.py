@@ -45,7 +45,7 @@ def parenMatching(str):
         error = 3 #open paren(s) excess
     return error,c,i,s
 
-stack = Stak()
+stack = Stack()
 stack = str(input("Enter expresion : "))
 
 err,c,i,s = parenMatching(stack)   
