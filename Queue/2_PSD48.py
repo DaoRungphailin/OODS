@@ -36,30 +36,12 @@ for i in range(len(inp)):
     if key == 'EN':
         q.enQueue(number)
     elif key == 'ES':
-        if ES == 0:
-            q.insert(ES,number)
-            ES += 1
-        else:
-            q.insert(ES,number)
-            ES += 1
+        q.insert(ES,number)
+        ES += 1
     elif key == 'D' :
-        if q.size() > 0:
+        if q.size() > 0: 
+            if(ES > 0):
+                ES -= 1
             print(q.deQueue()) 
         elif q.isEmpty():
-            print('Empty')      
-# for i in inp:
-#     if (i[0] == 'E' and i[1] == 'N'):
-#         q.enQueue(i[3])
-#     elif (i[0] == 'E' and i[1] == 'S'):
-#         if ES == 0:
-#             q.insert(ES,i[3])
-#             ES += 1
-#         else:
-#             q.insert(ES,i[3])
-#             ES += 1
-#     elif (i[0] == 'D'):
-#         if q.size() > 0:
-#             print(q.deQueue()) 
-#         elif q.isEmpty():
-#             print('Empty')          
-# #print(q)
+            print('Empty')
