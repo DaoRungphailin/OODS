@@ -1,11 +1,11 @@
 class Node:
-    def __init__(self, data,next = None):
+    def __init__(self,data,next = None):
         self.data = data
         if next is None:
             self.next = None
         else:
             self.next = next
-    
+
 class LinkedList:
     def __init__(self):
         self.head = None
@@ -31,16 +31,27 @@ class LinkedList:
                 temp = temp.next
             temp.next = p
 
+    def remove(self,data):
+        current = self.head;
+        previous = None;
+        while current is not None:
+            if current.data == data:
+            # if this is the first node (head)
+                if previous is not None:
+                    previous.nextNode = current.nextNode
+                else:
+                    self.head = current.nextNode
+            previous = current
+            current = current.nextNode;
+
     def printList(self): 
         txt = ''
         p = self.head
         while p != None:
-            if p.next == None:
-                txt += p.data
-                break;
             txt += str(p.data) + '->'
             p = p.next
        # removing trailing commas
+        txt = txt.strip("->")
         return txt
             
     def insert(self, index, data):
@@ -60,37 +71,11 @@ class LinkedList:
                 temp.next = p 
             else:
                 print("Data cannot be added") 
-    
 
 inp = input('Enter Input : ').split(',')
-llist = LinkedList()
-
-i = 0
-
-if inp[0] == '':
-    print('List is empty')
-else:
-    for i in inp[0].split():
-        llist.append(i)
-    
-    print(f'link list : {llist.printList()}')
-
-for i in range(len(inp)):
-    if i > 0:
-        index,data = inp[i].split(':')
-
-        if int(index) >= 0 and int(index) <= llist.size():
-            print(f'index = {int(index)} and data = {data}')
-            llist.insert(int(index),data)
-            print(f'link list : {llist.printList()}')
-        else:
-            print('Data cannot be added')
-            if llist.isEmpty():
-                print('List is empty')
-            else:
-                print(f'link list : {llist.printList()}')
-
-   
-    
-
-
+for i in inp:
+    inpu = inp.split(' ')
+for i in inpu:
+    if inpu[0] == 'I':
+        command,word = inpu[0].split()
+        print(f'command = {command} word = {word}')

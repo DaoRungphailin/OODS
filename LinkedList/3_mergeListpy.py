@@ -46,7 +46,9 @@ class LinkedList:
             raise Empty('List is Empty')
         p = self.head
         if p.next == None:
-            return p.data
+            temp = p.data
+            self.head = None
+            return temp
         while p.next != None and p.next.next != None:
             p = p.next
         temp = p.next.data
