@@ -71,7 +71,6 @@ class LinkedList:
         else:
             return "Not Found"
         
-
     def index(self, item):
         C=0
         current = self.head
@@ -85,7 +84,6 @@ class LinkedList:
         if current == None:
             return -1
         print ("item not present in list")
-        
         
     def size(self):
         count = 0
